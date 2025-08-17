@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "cy:open": "npx cypress open",
     "cy:run": "npx cypress run",
-    "cy:run:spec": "cypress run --spec \"cypress/e2e/**/*"
+    "cy:run:spec:hw_19": "cypress run --spec cypress/e2e/HW_19_Cy/hw_19.cy.js"
   },
   "repository": {
     "type": "git",
