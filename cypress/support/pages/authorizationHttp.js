@@ -1,7 +1,12 @@
 class AuthoriztionHttp {
   // Локатори елементів сторінки
-  get httpAuthorization() {
-    cy.visit('https://guest:welcome2qauto@qauto.forstudy.space/');
+  visitWithAuth() {
+    cy.visit('/', {
+      auth: {
+        username: 'guest',
+        password: 'welcome2qauto'
+      }
+    });
   }
 }
 

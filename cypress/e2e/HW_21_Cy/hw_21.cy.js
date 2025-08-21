@@ -7,11 +7,11 @@ import fuelExpensesPage from "../../support/pages/fuelExpensesPage";
 describe('Authorization in profile, creating carconfiguration', () => {
     beforeEach('HTTP authorization', () => {
         authorizationHttp
-        .httpAuthorization
+        .visitWithAuth()
         signInModalWindow
             .clickSignInButton()
-            .typeEmailInput('chyzh.illia+1@gmail.com')
-            .typePasswordInput('Qwerty123123', {sensetive: true})
+            .typeEmailInput(Cypress.env('email'))
+            .typePasswordInput(Cypress.env('password'), {sensetive: true})
             .clickLogInButton()
     });
 

@@ -8,9 +8,8 @@
     "cy:open": "npx cypress open",
     "cy:run": "npx cypress run",
     "cy:run:spec:hw_19": "cypress run --spec cypress/e2e/HW_19_Cy/hw_19.cy.js",
-    "cy:test:quato": "cypress run --spec 'cypress/e2e/HW_21_Cy/hw_21.cy.js'",
-    "cy:test:quato2": "cypress run --spec 'cypress/e2e/HW_21_Cy/hw_21.cy.js'",
-    "cy:test:all": "npm-run-all --sequential cy:test:quato cy:test:quato2"
+    "cy:quato1": "cross-env ENV=quato1 cypress run --spec cypress/e2e/HW_21_Cy/hw_21.cy.js",
+    "cy:quato2": "cross-env ENV=quato2 cypress run --spec cypress/e2e/HW_21_Cy/hw_21.cy.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +22,7 @@
   },
   "homepage": "https://github.com/Chyzh-Illia/Hillel_QA_Automation_JS-_Cy#readme",
   "devDependencies": {
+    "cross-env": "^10.0.0",
     "cypress": "^14.5.4",
     "cypress-mochawesome-reporter": "^4.0.1",
     "dotenv": "^17.2.1",
