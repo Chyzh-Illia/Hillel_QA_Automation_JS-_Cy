@@ -38,3 +38,22 @@ Cypress.Commands.overwrite('type', (originalFn, element, text, options) => {
 
   return originalFn(element, text, options)
 })
+
+Cypress.Commands.add('createExpense', (carId, mileage, liters, totalCost, date = new Date().toISOString().split('T')[0]) => {
+  cy.getCookie('sid').then((cookie) => {
+    return cy.request({
+      method: 'POST',
+      url: '/api/expenses',
+      headers: {
+        Cookie: `sid=${cookie.value}`
+      },
+      body: { 
+        carId,
+        reportedAt: date,
+        mileage,
+        liters,
+        totalCost
+      }
+    });
+  });
+});

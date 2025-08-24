@@ -9,7 +9,8 @@
     "cy:run": "npx cypress run",
     "cy:run:spec:hw_19": "cypress run --spec cypress/e2e/HW_19_Cy/hw_19.cy.js",
     "cy:quato1": "cross-env ENV=quato1 cypress run --spec cypress/e2e/HW_21_Cy/hw_21.cy.js",
-    "cy:quato2": "cross-env ENV=quato2 cypress run --spec cypress/e2e/HW_21_Cy/hw_21.cy.js"
+    "cy:quato2": "cross-env ENV=quato2 cypress run --spec cypress/e2e/HW_21_Cy/hw_21.cy.js",
+    "cy:run:spec:hw_22": "cypress run --spec cypress/e2e/HW_22_Cy_API/hw_22.cy.js"
   },
   "repository": {
     "type": "git",
