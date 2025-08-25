@@ -34,6 +34,5 @@ describe('Authorization in profile, creating carconfiguration', () => {
         .addingNumbersOfLiters('150')
         .addingTotalCost('200')
         .clickAddButton()
-
     })
 }) 
