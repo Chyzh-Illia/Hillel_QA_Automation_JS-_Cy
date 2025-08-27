@@ -2,23 +2,26 @@
 import commands from "../../support/commands";
 import authorizationHttp from "../../support/pages/authorizationHttp";
 import ModalRegistrationWindow from "../../support/pages/modalRegistrationPage";
+import RegistrationModalWindowValidation from "../../support/pages/RegistrationModalWindowValidation";
 
 describe('LoginHttp', () => {
     beforeEach('Redirect on main automation page with http login',() => {
         authorizationHttp
-        .httpAuthorization;
+        .visitWithAuth();
     });
 
     it('Should show error for empty Name field', () => {
-        cy.get('button.hero-descriptor_btn.btn.btn-primary').click();
-        cy.get('input#signupName').focus().blur(); 
-        cy.get('p').contains('Name required').should('be.visible');
+        RegistrationModalWindowValidation
+        .clickHeroDescriptionButton()
+        .inputSignUpName()
+        .shouldPElement()
     });
 
     it('Should show error for invalid Name', () => {
-        cy.get('button.hero-descriptor_btn.btn.btn-primary').click();
-        cy.get('input#signupName').type('123').blur();
-        cy.contains('Name is invalid').should('be.visible');
+        RegistrationModalWindowValidation
+        .clickHeroDescriptionButton()
+        .inputSignUpName('123')
+        .verifyNameIsInvalid()
     });
 
     it('Should accept valid Name', () => {
