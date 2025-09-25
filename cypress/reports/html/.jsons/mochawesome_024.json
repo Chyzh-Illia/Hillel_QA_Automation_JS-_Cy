@@ -1,0 +1,176 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 4,
+    "passes": 2,
+    "pending": 0,
+    "failures": 2,
+    "start": "2025-09-22T08:15:02.512Z",
+    "end": "2025-09-22T08:15:21.976Z",
+    "duration": 19464,
+    "testsRegistered": 4,
+    "passPercent": 50,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "d9ad4b03-3cca-4ccf-b929-a368af2fc2c1",
+      "title": "",
+      "fullFile": "cypress/e2e/HW_22_Cy_API/hw_22.cy.js",
+      "file": "cypress/HW_22_Cy_API/hw_22.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "5b2344c9-7c85-4860-8733-90268575b25f",
+          "title": "Authorization in profile, creating carconfiguration",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Open and Login in profile \"Sign in modal window\" => Create a car and validate API response",
+              "fullTitle": "Authorization in profile, creating carconfiguration Open and Login in profile \"Sign in modal window\" => Create a car and validate API response",
+              "timedOut": null,
+              "duration": 4523,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.intercept('POST', '**/api/cars').as('createCar');\n_myProfileGaragePage.default.clickAddCarButton().selectCarOption('BMW').selectModelOption('X5').typeMileageInput(1150).clickAddButton();\ncy.wait('@createCar').then(interception => {\n  expect(interception.response.statusCode).to.eq(201);\n  const carId = interception.response.body.data.id;\n  cy.log('Created car ID:', carId);\n  cy.writeFile('cypress/fixtures/carGarage.json', {\n    id: carId,\n    brand: 'BMW',\n    model: 'X5',\n    mileage: 1150\n  });\n  cy.fixture('carGarage.json').then(createdCar => {\n    cy.request({\n      method: 'GET',\n      url: '/api/cars'\n    }).then(response => {\n      expect(response.status).to.eq(200);\n      const foundCar = response.body.data.find(c => c.id === createdCar.id);\n      expect(foundCar).to.exist;\n      expect(foundCar.brand).to.eq(createdCar.brand);\n      expect(foundCar.model).to.eq(createdCar.model);\n      expect(foundCar.mileage).to.eq(createdCar.mileage);\n    });\n  });\n});",
+              "err": {},
+              "uuid": "48ed7645-9d0d-494a-b447-54f0711ad4bd",
+              "parentUUID": "5b2344c9-7c85-4860-8733-90268575b25f",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Create expense for existing car via API",
+              "fullTitle": "Authorization in profile, creating carconfiguration Create expense for existing car via API",
+              "timedOut": null,
+              "duration": 2056,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.fixture('carGarage.json').then(createdCar => {\n  const today = new Date();\n  const year = today.getFullYear();\n  const month = String(today.getMonth() + 1).padStart(2, '0');\n  const day = String(today.getDate()).padStart(2, '0');\n  const formattedDate = `${year}-${month}-${day}`;\n  cy.createExpense(createdCar.id, 2000, 50, 250, formattedDate).then(response => {\n    expect(response.status).to.eq(200);\n    expect(response.body.status).to.eq('ok');\n    const expense = response.body.data;\n    expect(expense).to.have.property('id');\n    expect(expense.carId).to.eq(createdCar.id);\n    expect(expense.mileage).to.eq(2000);\n    expect(expense.liters).to.eq(50);\n    expect(expense.totalCost).to.eq(250);\n  });\n});",
+              "err": {
+                "message": "TypeError: cy.createExpense is not a function",
+                "estack": "TypeError: cy.createExpense is not a function\n./cypress/e2e/HW_22_Cy_API/hw_22.cy.js/</</<@https://qauto.forstudy.space/__cypress/tests?p=cypress/e2e/HW_22_Cy_API/hw_22.cy.js:178:10\ngetRet@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:160434:20\ntryCatcher@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:13022:23\n../../node_modules/bluebird/js/release/method.js/module.exports/Promise.try@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:10296:29\nthenFn@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:160452:60\nthen@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:160904:21\n../driver/src/cypress/cy.ts/addCommand/wrapByType/<@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:178437:19\n../driver/src/cypress/command_queue.ts/runCommand/<@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:177222:15\ntryCatcher@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:13022:23\n../../node_modules/bluebird/js/release/promise.js/</module.exports/Promise.prototype._settlePromiseFromHandler@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:10957:31\n../../node_modules/bluebird/js/release/promise.js/</module.exports/Promise.prototype._settlePromise@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:11014:18\n../../node_modules/bluebird/js/release/promise.js/</module.exports/Promise.prototype._settlePromiseCtx@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:11051:10\n_drainQueueStep@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:7733:12\n_drainQueue@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:7722:24\n../../node_modules/bluebird/js/release/async.js/</Async.prototype._drainQueues@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:7738:16\n../../node_modules/bluebird/js/release/async.js/</Async/this.drainQueues@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:7608:14\n",
+                "diff": null
+              },
+              "uuid": "58e1c9f2-6b69-4102-ba8f-d7b4b831e196",
+              "parentUUID": "5b2344c9-7c85-4860-8733-90268575b25f",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Navigation to the \"Fuel Expenses Section\"",
+              "fullTitle": "Authorization in profile, creating carconfiguration Navigation to the \"Fuel Expenses Section\"",
+              "timedOut": null,
+              "duration": 4110,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "_fuelExpensesPage.default.navigateFuelExpensesSection().clickAddAnExpenseButton().chooseSelectCar('BMW X5').inputStaticDate('20.08.2025').addingMileage('2000').addingNumbersOfLiters('50').addingTotalCost('250').clickAddButton();",
+              "err": {},
+              "uuid": "58977877-0826-44b2-99c6-f4759048cb62",
+              "parentUUID": "5b2344c9-7c85-4860-8733-90268575b25f",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Validate created expense via UI in \"Fuel Expenses Section\"",
+              "fullTitle": "Authorization in profile, creating carconfiguration Validate created expense via UI in \"Fuel Expenses Section\"",
+              "timedOut": null,
+              "duration": 8679,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.fixture('carGarage.json').then(createdCar => {\n  const mileage = 2000;\n  const liters = 50;\n  const totalCost = 250;\n  const today = new Date();\n  const day = String(today.getDate()).padStart(2, '0');\n  const month = String(today.getMonth() + 1).padStart(2, '0');\n  const year = today.getFullYear();\n  const formattedDate = `${day}.${month}.${year}`;\n  _fuelExpensesPage.default.navigateFuelExpensesSection();\n  cy.get('#carSelectDropdown').click();\n  cy.contains('.car-select-dropdown_item', 'BMW X5').click({\n    force: true\n  });\n  cy.wait(2000);\n  cy.get('table').find('tr').contains('td.font-weight-bold', formattedDate).should('exist').parent().within(() => {\n    cy.get('td').eq(1).should('contain', mileage);\n    cy.get('td').eq(2).should('contain', `${liters}L`);\n    cy.get('td').eq(3).should('contain', `${totalCost}.00 USD`);\n  });\n});",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `table`, but never found it.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `table`, but never found it.\n    ./cypress/e2e/HW_22_Cy_API/hw_22.cy.js/</</<@https://qauto.forstudy.space/__cypress/tests?p=cypress/e2e/HW_22_Cy_API/hw_22.cy.js:211:10\n    getRet@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:160434:20\n    tryCatcher@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:13022:23\n    ../../node_modules/bluebird/js/release/method.js/module.exports/Promise.try@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:10296:29\n    thenFn@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:160452:60\n    then@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:160904:21\n    ../driver/src/cypress/cy.ts/addCommand/wrapByType/<@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:178437:19\n    ../driver/src/cypress/command_queue.ts/runCommand/<@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:177222:15\n    tryCatcher@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:13022:23\n    ../../node_modules/bluebird/js/release/promise.js/</module.exports/Promise.prototype._settlePromiseFromHandler@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:10957:31\n    ../../node_modules/bluebird/js/release/promise.js/</module.exports/Promise.prototype._settlePromise@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:11014:18\n    ../../node_modules/bluebird/js/release/promise.js/</module.exports/Promise.prototype._settlePromiseCtx@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:11051:10\n    _drainQueueStep@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:7733:12\n    _drainQueue@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:7722:24\n    ../../node_modules/bluebird/js/release/async.js/</Async.prototype._drainQueues@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:7738:16\n    ../../node_modules/bluebird/js/release/async.js/</Async/this.drainQueues@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:7608:14\n",
+                "diff": null
+              },
+              "uuid": "917469a7-a04c-48f5-88a7-614d33308700",
+              "parentUUID": "5b2344c9-7c85-4860-8733-90268575b25f",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "48ed7645-9d0d-494a-b447-54f0711ad4bd",
+            "58977877-0826-44b2-99c6-f4759048cb62"
+          ],
+          "failures": [
+            "58e1c9f2-6b69-4102-ba8f-d7b4b831e196",
+            "917469a7-a04c-48f5-88a7-614d33308700"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 19368,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "charts": true,
+        "reportPageTitle": "custom-title",
+        "embeddedScreenshots": true,
+        "inlineAssets": true,
+        "saveAllAttempts": false,
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "reportDir": "cypress/reports/html/.jsons"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 1,
+    "pending": 0,
+    "failures": 1,
+    "start": "2025-09-22T08:14:40.289Z",
+    "end": "2025-09-22T08:14:50.129Z",
+    "duration": 9840,
+    "testsRegistered": 2,
+    "passPercent": 50,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "618c603f-b8f0-48e6-991f-de9cb1c28600",
+      "title": "",
+      "fullFile": "cypress/e2e/HW_21_Cy/hw_21.cy.js",
+      "file": "cypress/HW_21_Cy/hw_21.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "ef705684-2e66-4c45-bed0-7cd681a8923a",
+          "title": "Authorization in profile, creating carconfiguration",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Open and Login in profile \"Sign in modal window\"",
+              "fullTitle": "Authorization in profile, creating carconfiguration Open and Login in profile \"Sign in modal window\"",
+              "timedOut": null,
+              "duration": 4133,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "_myProfileGaragePage.default.clickAddCarButton().selectCarOption('BMW').selectModelOption('X5').typeMileageInput('1150').clickAddButton();",
+              "err": {},
+              "uuid": "7a162b6b-c01f-4d44-8083-2607723ebb39",
+              "parentUUID": "ef705684-2e66-4c45-bed0-7cd681a8923a",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Navigation to the \"Fuel Expenses Section\"",
+              "fullTitle": "Authorization in profile, creating carconfiguration Navigation to the \"Fuel Expenses Section\"",
+              "timedOut": null,
+              "duration": 5632,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "_fuelExpensesPage.default.navigateFuelExpensesSection().clickAddAnExpenseButton().chooseSelectCar('BMW X5').inputStaticDate('20.08.2025').addingMileage('2000').addingNumbersOfLiters('150').addingTotalCost('200').clickAddButton();",
+              "err": {
+                "message": "CypressError: Timed out retrying after 4050ms: `cy.click()` failed because this element is detached from the DOM.\n\n`<p _ngcontent-rme-c64=\"\" class=\"about-block_title h2\">Log fue...</p>`\n\nCypress requires elements be attached in the DOM to interact with them.\n\nThe previous command that ran was:\n\n  > `cy.contains()`\n\nThis DOM element likely became detached somewhere between the previous and current command.\n\nCommon situations why this happens:\n  - Your JS framework re-rendered asynchronously\n  - Your app code reacted to an event firing and removed the element\n\nYou typically need to re-query for the element or add 'guards' which delay Cypress from running new commands.\n\nhttps://on.cypress.io/element-has-detached-from-dom",
+                "estack": "CypressError: Timed out retrying after 4050ms: `cy.click()` failed because this element is detached from the DOM.\n\n`<p _ngcontent-rme-c64=\"\" class=\"about-block_title h2\">Log fue...</p>`\n\nCypress requires elements be attached in the DOM to interact with them.\n\nThe previous command that ran was:\n\n  > `cy.contains()`\n\nThis DOM element likely became detached somewhere between the previous and current command.\n\nCommon situations why this happens:\n  - Your JS framework re-rendered asynchronously\n  - Your app code reacted to an event firing and removed the element\n\nYou typically need to re-query for the element or add 'guards' which delay Cypress from running new commands.\n\nhttps://on.cypress.io/element-has-detached-from-dom\nensureAttached@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:168765:76\nrunAllChecks@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:154675:12\nretryActionability@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:154755:16\ntryCatcher@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:13022:23\n../../node_modules/bluebird/js/release/method.js/module.exports/Promise.try@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:10296:29\nwhenStable@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:173835:62\n../driver/src/cy/retries.ts/create/retry/<@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:173290:14\ntryCatcher@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:13022:23\n../../node_modules/bluebird/js/release/promise.js/</module.exports/Promise.prototype._settlePromiseFromHandler@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:10957:31\n../../node_modules/bluebird/js/release/promise.js/</module.exports/Promise.prototype._settlePromise@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:11014:18\n../../node_modules/bluebird/js/release/promise.js/</module.exports/Promise.prototype._settlePromise0@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:11059:10\n../../node_modules/bluebird/js/release/promise.js/</module.exports/Promise.prototype._settlePromises@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:11139:18\n../../node_modules/bluebird/js/release/promise.js/</module.exports/Promise.prototype._fulfill@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:11083:18\n../../node_modules/bluebird/js/release/timers.js/module.exports/Promise.delay/handle<@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:12697:46\nFrom Your Spec Code:\n    navigateFuelExpensesSection@https://qauto.forstudy.space/__cypress/tests?p=cypress/e2e/HW_21_Cy/hw_21.cy.js:234:30\n    ./cypress/e2e/HW_21_Cy/hw_21.cy.js/</<@https://qauto.forstudy.space/__cypress/tests?p=cypress/e2e/HW_21_Cy/hw_21.cy.js:140:31\n    ../driver/src/cypress/cy.ts/setRunnable/runnable.fn@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:178704:43\n    callFn@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:129491:21\n    ../driver/node_modules/mocha/lib/runnable.js/</Runnable.prototype.run@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:129478:13\n    ../driver/src/cypress/runner.ts/create/onRunnableRun/<@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:185786:30\n    finallyHandler@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:9576:23\n    tryCatcher@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:13022:23\n    ../../node_modules/bluebird/js/release/promise.js/</module.exports/Promise.prototype._settlePromiseFromHandler@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:10957:31\n    ../../node_modules/bluebird/js/release/promise.js/</module.exports/Promise.prototype._settlePromise@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:11014:18\n    ../../node_modules/bluebird/js/release/promise.js/</module.exports/Promise.prototype._settlePromise0@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:11059:10\n    ../../node_modules/bluebird/js/release/promise.js/</module.exports/Promise.prototype._settlePromises@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:11139:18\n    _drainQueueStep@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:7729:12\n    _drainQueue@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:7722:24\n    ../../node_modules/bluebird/js/release/async.js/</Async.prototype._drainQueues@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:7738:16\n    ../../node_modules/bluebird/js/release/async.js/</Async/this.drainQueues@https://qauto.forstudy.space/__cypress/runner/cypress_runner.js:7608:14\n",
+                "diff": null
+              },
+              "uuid": "9a426830-890d-4a2b-b069-8887868bc776",
+              "parentUUID": "ef705684-2e66-4c45-bed0-7cd681a8923a",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "7a162b6b-c01f-4d44-8083-2607723ebb39"
+          ],
+          "failures": [
+            "9a426830-890d-4a2b-b069-8887868bc776"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 9765,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "charts": true,
+        "reportPageTitle": "custom-title",
+        "embeddedScreenshots": true,
+        "inlineAssets": true,
+        "saveAllAttempts": false,
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "reportDir": "cypress/reports/html/.jsons"
+      },
+      "version": "6.2.0"
+    }
+  }
+}
