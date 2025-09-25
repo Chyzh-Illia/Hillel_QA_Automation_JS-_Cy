@@ -14,16 +14,12 @@ jobs:
       options: --user 1001
 
     steps:
-      - name: Checkout repository
+      - name: Checkout repo
         uses: actions/checkout@v3
 
       - name: Run Cypress tests
-        uses: cypress-io/github-action@v6
-        with:
-          browser: firefox
-          config: integrationFolder=cypress/e2e
-        env:
-          CYPRESS_INSTALL_BINARY: 0
+        run: |
+          cypress run --browser firefox --config integrationFolder=cypress/e2e
 
       - name: Upload Cypress screenshots
         if: failure()
